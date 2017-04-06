@@ -1,0 +1,20 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+hook_add = '''
+  set background=dark
+  " colorscheme 設定は source 後に行う必要があるので VimEnter 行う。
+  " 但し Colorscheme イベントの発生が抑制されないよう nented を付ける。
+  au MyAutoCmd VimEnter * nested colorscheme hybrid
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'

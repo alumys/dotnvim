@@ -1,0 +1,62 @@
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo  = 'othree/html5.vim'
+on_ft = 'html'
+
+[[plugins]]
+repo = 'rcmdnk/vim-markdown'
+on_ft = ['markdown','mkd']
+hook_add = '''
+    let g:vim_markdown_frontmatter = 1
+    let g:vim_markdown_math = 1
+'''
+
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = 'go'
+[[plugins]]
+repo = 'Shougo/vimshell'
+if = "!has('nvim')"
+hook_add = '''
+source ~/.config/nvim/plugins/vimshell.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+depends = ['neomru.vim', 'neoyank.vim']
+on_event = 'BufRead'
+hook_add = '''
+nmap ,. :<C-u>Denite file_rec<CR>
+nmap .. :<C-u>Denite file_mru<CR>
+nmap ,, :<C-u>Denite grep<CR>
+'''
+hook_post_source = '''
+call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', ''])
+call denite#custom#var('grep', 'command', ['ag', '--nogroup', '--nocolor', '--smart-case', '--hidden'])
+call denite#custom#var('grep', 'default_opts', [])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#map('insert', '<C-a>', '<Home>')
+call denite#custom#map('insert', '<C-e>', '<End>')
+call denite#custom#map('insert', '<C-f>', '<Right>')
+call denite#custom#map('insert', '<C-b>', '<Left>')
+call denite#custom#map('_', "<C-s>", '<denite:do_action:split>')
+call denite#custom#map('insert', "<C-s>", '<denite:do_action:split>')
+call denite#custom#map('_', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
+'''
