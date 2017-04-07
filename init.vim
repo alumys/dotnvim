@@ -13,9 +13,17 @@ set sh=zsh
 set hlsearch
 set ruler
 set title
+set list
 set incsearch
 set wildmenu wildmode=list:full
 set laststatus=2
+set showmatch
+set listchars=tab:>\ ,extends:<
+set whichwrap=b,s,h,l,<,>,[,]
+
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
 
 filetype indent on
 set expandtab
@@ -36,6 +44,13 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline_theme='luna'
 let g:airline_powerline_fonts = 0
 let g:Powerline_symbols='unicode'
+
+" ------------------------------------
+" nerdcommenter
+" ------------------------------------
+let NERDSpaceDelims = 1
+nmap ,/ <Plug>NERDCommenterToggle
+vmap ,/ <Plug>NERDCommenterToggle
 
 " ------------------------------------
 " Keybinding
@@ -82,6 +97,8 @@ imap <C-a>  <Home>
 imap <C-e>  <End>
 imap <C-b>  <Left>
 imap <C-f>  <Right>
+
+nnoremap <silent><C-p> :NERDTreeToggle<CR>
 
 let s:cache_home = empty($XDG_CACHE_HOME) ? expand('~/.cache') : $XDG_CACHE_HOME
 let s:dein_dir = s:cache_home . '/dein'
